@@ -2,7 +2,10 @@ import configparser
 import json
 import os
 
-from bottle import route, run, request, response, hook
+from bottle import route, run, request, response, hook, BaseRequest
+# since the default value is 10024, we need to increase it to allow for larger requests, currently 500KiB
+BaseRequest.MEMFILE_MAX = 512000
+
 from gdal_interfaces import GDALTileInterface
 
 
